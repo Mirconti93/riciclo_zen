@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "715004253991",
+    "firebase_url": "https://riciclozen-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "riciclozen",
+    "storage_bucket": "riciclozen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715004253991:android:41db3506981d68d4c53b02",
+        "android_client_info": {
+          "package_name": "com.mirconti.riciclo_zen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr0j8Jcum7MrJbdwGw5EcsumJIPbjwYxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

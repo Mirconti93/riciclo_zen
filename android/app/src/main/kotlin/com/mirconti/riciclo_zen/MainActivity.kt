@@ -1,4 +1,4 @@
-package com.example.riciclo_zen
+package com.mirconti.riciclo_zen
 
 import io.flutter.embedding.android.FlutterActivity
 

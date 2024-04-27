@@ -30,10 +30,7 @@ class HomeScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               onPressed: () {
                 final cubit = BlocProvider.of<ItemsCubit>(context);
-                /*List<ItemModel> items = [];
-                items.add(ItemModel(name: "Spazzolino", material: "indifferenziato"));
-                items.add(ItemModel(name: "giornale", material: "carta"));*/
-                cubit.addItems([]);
+                cubit.fetchData();
                 //Navigator.of(context).pushNamed('/draw');
               },
               child: const Text("Avanti",style: TextStyle(
