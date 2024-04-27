@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/bloc/ItemsState.dart';
+import 'package:riciclo_zen/widgets/ItemsList.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +22,26 @@ class HomeScreen extends StatelessWidget {
           // the App.build method, and use it to set our appbar title.
           title: const Text("Riciclo Zen"),
         ),
-        body: BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
-
-          return Column(
-            children: <Widget>[
-              const Text("Scegli il numero di squadre:"),
-              ElevatedButton(style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                textStyle: const TextStyle(
-                    color: Colors.white, fontSize: 16, fontStyle: FontStyle.normal),
+        body: Column(
+          children: <Widget>[
+            const Text("Scegli il numero di squadre:"),
+            const Expanded(child: ItemsList()),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              onPressed: () {
+                final cubit = BlocProvider.of<ItemsCubit>(context);
+                /*List<ItemModel> items = [];
+                items.add(ItemModel(name: "Spazzolino", material: "indifferenziato"));
+                items.add(ItemModel(name: "giornale", material: "carta"));*/
+                cubit.addItems([]);
+                //Navigator.of(context).pushNamed('/draw');
+              },
+              child: const Text("Avanti",style: TextStyle(
+                  color: Colors.white, fontSize: 16, fontStyle: FontStyle.normal),
               ),
-                onPressed: () {
-
-                  Navigator.of(context).pushNamed('/draw');
-                },
-                child: const Text("Avanti"),)
-            ],
-          );
-        })
+            )
+          ],
+        ),
     );
   }
 }
