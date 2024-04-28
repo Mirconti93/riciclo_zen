@@ -9,4 +9,11 @@ class ItemModel extends Equatable {
   @override
   List<Object?> get props => [name];
 
+  factory ItemModel.fromJson(String nameFromKey, Map<String, dynamic> json) {
+    return ItemModel(
+      name: nameFromKey,
+      material: json['m1'],
+    );
+  }
+
 }
