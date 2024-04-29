@@ -22,23 +22,26 @@ class HomeScreen extends StatelessWidget {
           // the App.build method, and use it to set our appbar title.
           title: const Text("Riciclo Zen"),
         ),
-        body: Column(
-          children: <Widget>[
-            const Text("Scegli il numero di squadre:"),
-            const Expanded(child: ItemsList()),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              onPressed: () {
-                final cubit = BlocProvider.of<ItemsCubit>(context);
-                cubit.fetchData();
-                //Navigator.of(context).pushNamed('/draw');
-              },
-              child: const Text("Avanti",style: TextStyle(
-                  color: Colors.white, fontSize: 16, fontStyle: FontStyle.normal),
-              ),
-            )
-          ],
-        ),
+        body: Padding(
+          padding: EdgeInsets.all(8),
+          child: Column(
+            children: <Widget>[
+              const Text("Scegli il numero di squadre:"),
+              const Expanded(child: ItemsList()),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                onPressed: () {
+                  final cubit = BlocProvider.of<ItemsCubit>(context);
+                  cubit.fetchData();
+                  //Navigator.of(context).pushNamed('/draw');
+                },
+                child: const Text("Avanti",style: TextStyle(
+                    color: Colors.white, fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+              )
+            ],
+          )
+      ),
     );
   }
 }

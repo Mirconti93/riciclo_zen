@@ -19,7 +19,7 @@ class _ItemCardState extends State<ItemCard> {
   @override
   Widget build(BuildContext context) {
     return Card(color: const Color(0xFF152218),
-      child: Padding(padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      child: Padding(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

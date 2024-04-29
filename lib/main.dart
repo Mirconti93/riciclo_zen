@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       BlocProvider(
-          create: (BuildContext context) => ItemsCubit(),
+          create: (BuildContext context) => ItemsCubit()..fetchData(),
           child: MaterialApp(
               title: 'Riciclo Zen',
               theme: ThemeData(
