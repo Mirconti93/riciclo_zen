@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/ItemsCubit.dart';
+import 'package:riciclo_zen/commons/Constants.dart';
+import 'package:riciclo_zen/widgets/CItyList.dart';
 import 'package:riciclo_zen/widgets/HomeScreen.dart';
 
 void main() {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
                 splashColor: Colors.amber[200],    // Color of ink splash during a ripple effect
                 unselectedWidgetColor: Colors.grey[400], // Color for widgets like unchecked checkboxes, radio buttons, etc.
                 disabledColor: Colors.grey[200], // Color to indicate disabled widgets
-                secondaryHeaderColor: Colors.blue[50],  // Background color for sticky headers
+                secondaryHeaderColor: Colors.blue[50], // Background color for sticky headers
                 backgroundColor: Colors.grey[50],  // Default background color
                 errorColor: Colors.red,         // Default color for error messages and icons
                 toggleableActiveColor: Colors.blue[600],
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               routes: {
-                '/detail': (context) => const HomeScreen(),
+                Constants.NAV_CITY: (context) => const CityList(),
               },
               home: const HomeScreen()
           )
