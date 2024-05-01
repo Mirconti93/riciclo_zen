@@ -1,4 +1,5 @@
+import 'dart:ui';
+
 class Constants {
-  static String NAV_HOME = "/";
-  static String NAV_CITY = "/city";
+  static Color DarkGreenGray = Color(0xFF152218);
 }

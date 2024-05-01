@@ -4,17 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riciclo_zen/models/ItemModel.dart';
 
-class ItemCard extends StatefulWidget {
-  final ItemModel item;
+class GenericCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String comment;
+  final bool showComment;
 
-  const ItemCard({ super.key, required this.item});
-
-  @override
-  State<ItemCard> createState() => _ItemCardState();
-}
-
-class _ItemCardState extends State<ItemCard> {
-  bool showComment = true;
+  const GenericCard({ super.key, required this.title, required this.subtitle, required this.showComment, this.comment = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +19,20 @@ class _ItemCardState extends State<ItemCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.item.name,
+            Text(this.title,
                 style: TextStyle(
                     color: Colors.grey[200],
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
-            Text(widget.item.material),
+            Text(this.subtitle,
+              style: TextStyle(
+                  color: Colors.amber[500],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+              ),
             Visibility(
               visible: showComment,
-              child: Text(widget.item.comment)
+              child: Text(this.comment)
             )
           ]
         ),

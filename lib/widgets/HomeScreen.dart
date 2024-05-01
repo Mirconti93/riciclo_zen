@@ -49,19 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8),
-          child: Column(
-            children: <Widget>[
-              const Text("Scegli il numero di squadre:"),
-              Expanded(child: pages[_selectedIndex].widget)
-            ],
-          )
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: getBottomBarItems(),
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
-      )
+          child: pages[_selectedIndex].widget
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: getBottomBarItems(),
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[500],
+          onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
+        )
     );
   }
 }

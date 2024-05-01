@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../commons/Constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:riciclo_zen/bloc/CityCubit.dart';
+import 'package:riciclo_zen/bloc/CityState.dart';
+import 'package:riciclo_zen/widgets/GenericCard.dart';
 
 class CityList extends StatelessWidget {
   const CityList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: Column(
-        children: <Widget>[
-          const Text("Scegli il numero di squadre:"),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-            onPressed: () {
-              //Navigator.of(context).pushNamed('/draw');
+    return Column(
+      children: [
+        Expanded( child:
+        BlocBuilder<CityCubit, CityState>(builder: (context, state) {
+          return ListView.builder(
+            itemCount: state.cityList.length,
+            itemBuilder: (context, index) {
+              return GenericCard(
+                title: state.cityList[index].name,
+                subtitle: state.cityList[index].link,
+                showComment: false,
+              );
             },
-            child: const Text("Avanti",style: TextStyle(
-                color: Colors.white, fontSize: 16, fontStyle: FontStyle.normal),
-            ),
-          )
-        ],
-      )
-  );
+          );
+        }
+        )
+        ),
+      ],
+    );
 
   }
   

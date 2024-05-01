@@ -6,6 +6,8 @@ import 'package:riciclo_zen/commons/Constants.dart';
 import 'package:riciclo_zen/widgets/CItyList.dart';
 import 'package:riciclo_zen/widgets/HomeScreen.dart';
 
+import 'bloc/CityCubit.dart';
+
 void main() {
   Firebase.initializeApp();
   runApp(const MyApp());
@@ -18,8 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      BlocProvider(
-          create: (BuildContext context) => ItemsCubit()..fetchData(),
+      MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (BuildContext context) => ItemsCubit()..fetchData()),
+            BlocProvider(create: (BuildContext context) => CityCubit()..fetchData()),
+          ],
           child: MaterialApp(
               title: 'Riciclo Zen',
               theme: ThemeData(
@@ -27,9 +32,9 @@ class MyApp extends StatelessWidget {
                 primarySwatch: Colors.indigo,
                 brightness: Brightness.dark,   // Determines if the theme is light or dark
                 primaryColor: Colors.blue,      // Primary color for major parts of the app (toolbars, tab bars, etc.)
-                primaryColorDark: Colors.blue[700], // Darker variant of the primary color
+                primaryColorDark: Color(0xFF152218), // Darker variant of the primary color
                 primaryColorLight: Colors.blue[100], // Lighter variant of the primary color
-                canvasColor: Colors.grey[50],   // Background color for larger parts of the app
+                canvasColor: Color(0xFF152218),   // Background color for larger parts of the app
                 scaffoldBackgroundColor: Color(0xFF101A11), // Background color for Scaffolds
                 cardColor: Colors.grey[700],        // Background color of cards
                 dividerColor: Colors.grey,
@@ -50,9 +55,6 @@ class MyApp extends StatelessWidget {
                 ),
                 useMaterial3: true,
               ),
-              routes: {
-                Constants.NAV_CITY: (context) => const CityList(),
-              },
               home: const HomeScreen()
           )
       );
