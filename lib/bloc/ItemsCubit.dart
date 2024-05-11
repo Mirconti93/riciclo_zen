@@ -14,7 +14,7 @@ class ItemsCubit extends Cubit<ItemsState> {
   ItemsCubit() : super(ItemsState(const []));
 
   void fetchData() async {
-    var f = await Firebase.initializeApp();
+    await Firebase.initializeApp();
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Oggetti');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
@@ -27,6 +27,10 @@ class ItemsCubit extends Cubit<ItemsState> {
       emit(ItemsState(items));
     });
 
+  }
+
+  void filterData(String text) {
+    emit(ItemsState(state.items.where((element) => element.name.contains(text)).toList()));
   }
 
   void notifyError() {

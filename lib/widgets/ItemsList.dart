@@ -10,12 +10,22 @@ class ItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("Cerca l'oggetto per vedere dove buttarlo:"),
-        Expanded( child:
-          BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
-            return ListView.builder(
+    return BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
+      return Column(
+        children: [
+          Text("Cerca l'oggetto per vedere dove buttarlo:"),
+          TextField(
+              decoration: const InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (value) {
+                context.read<ItemsCubit>().filterData(value);
+              }
+          ),
+          Expanded(
+              child: ListView.builder(
                 itemCount: state.items.length,
                 itemBuilder: (context, index) {
                   return GenericCard(
@@ -25,11 +35,10 @@ class ItemsList extends StatelessWidget {
                     showComment: true,
                   );
                 },
-              );
-            }
+              )
           )
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }
