@@ -10,6 +10,7 @@ import '../models/ItemModel.dart';
 import 'dart:developer';
 
 class ItemsCubit extends Cubit<ItemsState> {
+  List<ItemModel> itemList = [];
 
   ItemsCubit() : super(ItemsState(const []));
 
@@ -18,23 +19,28 @@ class ItemsCubit extends Cubit<ItemsState> {
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Oggetti');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
-      log('db riciclo lenght: ${values.length}');
-      List<ItemModel> items = [];
-      values.forEach((key, value) {
-        log('db value: $value');
-        items.add(ItemModel.fromJson(key, value));
-      });
-      emit(ItemsState(items));
+      if (values.isEmpty) {
+        notifyError("Nessun elemento trovato");
+      } else {
+        log('db riciclo lenght: ${values.length}');
+        List<ItemModel> items = [];
+        values.forEach((key, value) {
+          log('db value: $value');
+          items.add(ItemModel.fromJson(key, value));
+        });
+        itemList = items;
+        emit(ItemsState(items));
+      }
     });
 
   }
 
   void filterData(String text) {
-    emit(ItemsState(state.items.where((element) => element.name.contains(text)).toList()));
+    emit(ItemsState(itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
 
-  void notifyError() {
-    emit(ErrorState("Error"));
+  void notifyError(String message) {
+    emit(ErrorState(message));
   }
 
 }
