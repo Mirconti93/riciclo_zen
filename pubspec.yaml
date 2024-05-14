@@ -39,6 +39,7 @@ dependencies:
   equatable: ^2.0.5
   firebase_database: ^10.5.4
   firebase_core: ^2.30.1
+  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/ItemsCubit.dart';
 import 'package:riciclo_zen/bloc/ItemsState.dart';
 import 'package:riciclo_zen/widgets/GenericCard.dart';
+import 'package:riciclo_zen/widgets/SearchWidet.dart';
 
 class ItemsList extends StatelessWidget {
   const ItemsList({super.key});
@@ -14,16 +15,7 @@ class ItemsList extends StatelessWidget {
       return Column(
         children: [
           Text("Cerca l'oggetto per vedere dove buttarlo:"),
-          TextField(
-              decoration: const InputDecoration(
-                labelText: 'Search',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.search),
-              ),
-              onChanged: (value) {
-                context.read<ItemsCubit>().filterData(value);
-              }
-          ),
+          const SearchWidget(),
           Expanded(
               child: ListView.builder(
                 itemCount: state.items.length,
