@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/ItemsCubit.dart';
 import 'package:riciclo_zen/bloc/ItemsState.dart';
+import 'package:riciclo_zen/commons/OnSearchCallback.dart';
 import 'package:riciclo_zen/widgets/GenericCard.dart';
 import 'package:riciclo_zen/widgets/SearchWidet.dart';
 
@@ -15,7 +16,9 @@ class ItemsList extends StatelessWidget {
       return Column(
         children: [
           Text("Cerca l'oggetto per vedere dove buttarlo:"),
-          const SearchWidget(),
+          SearchWidget(callback: (String value) {
+            context.read<ItemsCubit>().filterData(value);
+          }),
           Expanded(
               child: ListView.builder(
                 itemCount: state.items.length,
@@ -24,7 +27,7 @@ class ItemsList extends StatelessWidget {
                     title: state.items[index].name,
                     subtitle: state.items[index].material,
                     comment: state.items[index].comment,
-                    showComment: true,
+                    showSubtitle: true,
                   );
                 },
               )
@@ -33,4 +36,5 @@ class ItemsList extends StatelessWidget {
       );
     });
   }
+
 }

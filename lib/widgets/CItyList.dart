@@ -19,8 +19,8 @@ class CityList extends StatelessWidget {
             itemBuilder: (context, index) {
               return GenericCard(
                 title: state.cityList[index].name,
-                subtitle: state.cityList[index].link,
-                showComment: false,
+                comment: state.cityList[index].link,
+                showSubtitle: false,
               );
             },
           );

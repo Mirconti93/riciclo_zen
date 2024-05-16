@@ -34,13 +34,13 @@ class MyApp extends StatelessWidget {
               title: 'Riciclo Zen',
               theme: ThemeData(
                 // Imposta i colori primari e secondari
-                primarySwatch: Colors.indigo,
+                primarySwatch: Colors.teal,
                 brightness: Brightness.dark,   // Determines if the theme is light or dark
-                primaryColor: Colors.blue,      // Primary color for major parts of the app (toolbars, tab bars, etc.)
-                primaryColorDark: Color(0xFF152218), // Darker variant of the primary color
+                primaryColor: Colors.teal,      // Primary color for major parts of the app (toolbars, tab bars, etc.)
+                primaryColorDark: const Color(0x104657), // Darker variant of the primary color
                 primaryColorLight: Colors.blue[100], // Lighter variant of the primary color
-                canvasColor: Color(0xFF152218),   // Background color for larger parts of the app
-                scaffoldBackgroundColor: Color(0xFF101A11), // Background color for Scaffolds
+                canvasColor: const Color(0xFF104657),   // Background color for larger parts of the app
+                scaffoldBackgroundColor: const Color(0xFF25252F), // Background color for Scaffolds
                 cardColor: Colors.grey[700],        // Background color of cards
                 dividerColor: Colors.grey,
                 highlightColor: Colors.amber[700], // Color of ink splash when tapped
@@ -56,13 +56,12 @@ class MyApp extends StatelessWidget {
                 ),
                 // Imposta lo stile della barra dell'app
                 appBarTheme: const AppBarTheme(
-                  color: Colors.indigo,
+                  color: Color(0xFF004444),
                 ),
                 useMaterial3: true,
               ),
               home: const HomeScreen(),
             routes: {
-              '/': (context) => const HomeScreen(),
               WebScreen.routeName: (context) => const WebScreen(),
             },
           )
