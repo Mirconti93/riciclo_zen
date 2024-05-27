@@ -15,7 +15,7 @@ class ItemsList extends StatelessWidget {
     return BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
       return Column(
         children: [
-          Text("Cerca l'oggetto per vedere dove buttarlo:"),
+          const Text("Cerca l'oggetto per sapere dove gettarlo:"),
           SearchWidget(callback: (String value) {
             context.read<ItemsCubit>().filterData(value);
           }),

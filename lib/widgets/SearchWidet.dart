@@ -28,17 +28,22 @@ class _SearchWidgetState extends State<SearchWidget> {
   @override
   Widget build(BuildContext context) {
 
-    return TextField(
-        decoration: const InputDecoration(
-          //labelText: 'Search',
-          filled: true, // <- this is required.
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            borderSide: BorderSide.none,
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: SizedBox(
+        height: 35,
+        child: TextField(
+          decoration: const InputDecoration(
+            //labelText: 'Search',
+            filled: true, // <- this is required.
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderSide: BorderSide.none,
+            ),
+            prefixIcon: Icon(Icons.search),
           ),
-          prefixIcon: Icon(Icons.search),
-        ),
-        onChanged: (value) {widget.callback(value);}
+          onChanged: (value) {widget.callback(value);}
+        )
+      )
     );
   }
 }

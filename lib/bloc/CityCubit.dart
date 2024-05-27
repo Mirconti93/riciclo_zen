@@ -12,6 +12,7 @@ import '../models/ItemModel.dart';
 import 'dart:developer';
 
 class CityCubit extends Cubit<CityState> {
+  List<CityModel> itemList = [];
 
   CityCubit() : super(CityState(const []));
 
@@ -26,10 +27,14 @@ class CityCubit extends Cubit<CityState> {
         log('db value: $value');
         cityList.add(CityModel(name: key, link: value));
       });
+      itemList = cityList;
       emit(CityState(cityList));
     });
 
   }
 
+  void filterData(String text) {
+    emit(CityState(itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
+  }
 
 }

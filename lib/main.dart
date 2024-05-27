@@ -36,12 +36,12 @@ class MyApp extends StatelessWidget {
                 // Imposta i colori primari e secondari
                 primarySwatch: Colors.teal,
                 brightness: Brightness.dark,   // Determines if the theme is light or dark
-                primaryColor: Colors.teal,      // Primary color for major parts of the app (toolbars, tab bars, etc.)
-                primaryColorDark: const Color(0x104657), // Darker variant of the primary color
+                primaryColor: const Color(0xFF009384),//Colors.teal,      // Primary color for major parts of the app (toolbars, tab bars, etc.)
+                primaryColorDark: const Color(0xFF104657), // Darker variant of the primary color
                 primaryColorLight: Colors.blue[100], // Lighter variant of the primary color
                 canvasColor: const Color(0xFF104657),   // Background color for larger parts of the app
                 scaffoldBackgroundColor: const Color(0xFF25252F), // Background color for Scaffolds
-                cardColor: Colors.grey[700],        // Background color of cards
+                cardColor: const Color(0xFF009384),//Colors.grey[700],        // Background color of cards
                 dividerColor: Colors.grey,
                 highlightColor: Colors.amber[700], // Color of ink splash when tapped
                 splashColor: Colors.amber[200],    // Color of ink splash during a ripple effect
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                 ),
                 // Imposta lo stile della barra dell'app
                 appBarTheme: const AppBarTheme(
-                  color: Color(0xFF004444),
+                  color: Color(0xFF006C76),
                 ),
                 useMaterial3: true,
               ),
