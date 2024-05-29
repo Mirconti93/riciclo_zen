@@ -12,12 +12,14 @@ import 'package:riciclo_zen/widgets/WebWidget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebScreen extends StatelessWidget {
-  const WebScreen({Key? key}) : super(key: key);
-
   static const String routeName = "/web";
+
+  const WebScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)!.settings.arguments as WebArguments;
 
     return Scaffold(
         appBar: AppBar(
@@ -28,9 +30,15 @@ class WebScreen extends StatelessWidget {
           title: const Text("Riciclo Zen"),
         ),
         body: BlocBuilder<WebCubit, WebState>(builder: (context, state) {
-          return WebWidget(url: state.url);
+          return WebWidget(url: args.url);
         }
       )
     );
   }
+}
+
+class WebArguments {
+  final String url;
+
+  WebArguments(this.url);
 }

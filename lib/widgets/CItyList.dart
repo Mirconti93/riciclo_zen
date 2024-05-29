@@ -26,7 +26,14 @@ class CityList extends StatelessWidget {
                 itemCount: state.cityList.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () => {Navigator.pushNamed(context, WebScreen.routeName)},
+                    onTap: () => {
+                      Navigator.pushNamed(
+                        context, WebScreen.routeName,
+                        arguments: WebArguments(
+                          state.cityList[index].link
+                        )
+                      )
+                    },
                     child: GenericCard(
                       title: state.cityList[index].name,
                       comment: state.cityList[index].link,

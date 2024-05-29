@@ -3,14 +3,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/commons/Constants.dart';
-import 'package:riciclo_zen/commons/NavigationItem.dart';
-import 'package:riciclo_zen/commons/OnSearchCallback.dart';
-import 'package:riciclo_zen/widgets/CItyList.dart';
-import 'package:riciclo_zen/widgets/ItemsList.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class SearchWidget extends StatefulWidget {
   final void Function(String) callback;
@@ -30,7 +22,7 @@ class _SearchWidgetState extends State<SearchWidget> {
 
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: SizedBox(
-        height: 35,
+        height: 50,
         child: TextField(
           decoration: const InputDecoration(
             //labelText: 'Search',
