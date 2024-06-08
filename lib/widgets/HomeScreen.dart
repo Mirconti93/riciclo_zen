@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF004444),
+          backgroundColor: const Color(0xFF2F3136),
           title: const Text("Riciclo Zen"),
         ),
         body: Padding(
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: getBottomBarItems(),
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[700],
+          selectedItemColor: Color(0xFF00E791),
           onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
         )
     );
