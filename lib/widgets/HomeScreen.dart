@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/commons/Constants.dart';
 import 'package:riciclo_zen/commons/NavigationItem.dart';
 import 'package:riciclo_zen/widgets/CItyList.dart';
 import 'package:riciclo_zen/widgets/ItemsList.dart';
@@ -18,8 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   static List<NavigationItem> pages = <NavigationItem>[
-    NavigationItem(ItemsList(), "Materiali", Icon(Icons.home)),
-    NavigationItem(CityList(), "Paesi", Icon(Icons.place))
+    const NavigationItem(ItemsList(), "Materiali", Icon(Icons.home)),
+    const NavigationItem(CityList(), "Paesi", Icon(Icons.place))
   ];
 
   void _onItemTapped(int index) {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/ItemsCubit.dart';
 import 'package:riciclo_zen/bloc/ItemsState.dart';
-import 'package:riciclo_zen/commons/OnSearchCallback.dart';
 import 'package:riciclo_zen/widgets/GenericCard.dart';
 import 'package:riciclo_zen/widgets/SearchWidet.dart';
 
