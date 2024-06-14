@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:riciclo_zen/bloc/CityState.dart';
 import 'package:riciclo_zen/bloc/ItemsState.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:riciclo_zen/models/CityModel.dart';
-import '../models/ItemModel.dart';
+import 'package:riciclo_zen/domain/models/CityModel.dart';
+import '../domain/models/ItemModel.dart';
 import 'dart:developer';
 
 class CityCubit extends Cubit<CityState> {

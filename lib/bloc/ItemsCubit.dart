@@ -2,12 +2,13 @@
 
 import 'dart:convert';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/ItemsState.dart';
-import 'package:firebase_database/firebase_database.dart';
-import '../models/ItemModel.dart';
 import 'dart:developer';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../domain/models/ItemModel.dart';
+import 'ItemsState.dart';
 
 class ItemsCubit extends Cubit<ItemsState> {
   List<ItemModel> itemList = [];
@@ -32,8 +33,6 @@ class ItemsCubit extends Cubit<ItemsState> {
         emit(ItemsState(items));
       }
     });
-
-    ItemsDa
 
   }
 

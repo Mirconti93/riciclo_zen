@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../models/ItemModel.dart';
+import '../domain/models/ItemModel.dart';
 
 class ItemsState extends Equatable {
   List<ItemModel> items;

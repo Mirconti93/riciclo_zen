@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:riciclo_zen/models/CityModel.dart';
+import 'package:riciclo_zen/domain/models/CityModel.dart';
 
-import '../models/ItemModel.dart';
+import '../domain/models/ItemModel.dart';
 
 class WebState extends Equatable {
   final String url;
