@@ -48,9 +48,6 @@ class MyApp extends StatelessWidget {
                 unselectedWidgetColor: Colors.grey[400], // Color for widgets like unchecked checkboxes, radio buttons, etc.
                 disabledColor: Colors.grey[200], // Color to indicate disabled widgets
                 secondaryHeaderColor: Colors.blue[50], // Background color for sticky headers
-                backgroundColor: Colors.grey[50],  // Default background color
-                errorColor: Colors.red,         // Default color for error messages and icons
-                toggleableActiveColor: Colors.blue[600],
                 textTheme: const TextTheme(
                   titleLarge: TextStyle(color: Colors.black87),
                 ),

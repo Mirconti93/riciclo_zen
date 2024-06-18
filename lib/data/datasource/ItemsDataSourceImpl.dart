@@ -7,12 +7,13 @@ import '../../domain/models/ItemModel.dart';
 
 class ItemsDataSourceImpl {
 
-  Future<List<ItemModel>> fetchData() async {
+  Future<List<ItemModel>?> fetchData() async {
+    List<ItemModel> items = [];
     await Firebase.initializeApp();
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Oggetti');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
-      List<ItemModel> items = [];
+
       if (values.isEmpty) {
         //notifyError("Nessun elemento trovato");
       } else {
@@ -23,8 +24,9 @@ class ItemsDataSourceImpl {
           items.add(ItemModel.fromJson(key, value));
         });
       }
-      return items;
+
     });
+    return items;
 
   }
 

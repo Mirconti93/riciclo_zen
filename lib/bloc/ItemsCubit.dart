@@ -18,8 +18,14 @@ class ItemsCubit extends Cubit<ItemsState> {
   ItemsCubit() : super(ItemsState(const []));
 
   void fetchData() async {
-    var data=ItemsDataSourceImpl().fetchData();
-    emit(ItemsState(data));
+    ItemsDataSourceImpl().fetchData().then(
+      (data) => {
+        if (data != null) {
+          emit(ItemsState(data))
+        }
+      }
+    ).catchError(() => log('Error fetching data'));
+
 
     // await Firebase.initializeApp();
     // DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Oggetti');

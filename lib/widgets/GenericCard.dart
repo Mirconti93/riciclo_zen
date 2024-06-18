@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:riciclo_zen/models/ItemModel.dart';
+import 'package:riciclo_zen/domain/models/ItemModel.dart';
 
 class GenericCard extends StatelessWidget {
   final String title;
