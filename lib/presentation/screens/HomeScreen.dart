@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riciclo_zen/commons/NavigationItem.dart';
-import 'package:riciclo_zen/widgets/CItyList.dart';
-import 'package:riciclo_zen/widgets/ItemsList.dart';
+
+import '../widgets/CItyList.dart';
+import '../widgets/ItemsList.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: getBottomBarItems(),
           currentIndex: _selectedIndex,
-          selectedItemColor: Color(0xFF00E791),
+          selectedItemColor: const Color(0xFF00E791),
           onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
         )
     );

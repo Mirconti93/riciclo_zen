@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import '../../domain/datasource/RecycleDataSource.dart';
 import '../../domain/models/ItemModel.dart';
 
-class ItemsDataSourceImpl {
+class RecycleDataSourceImpl extends RecycleDataSource{
 
+  @override
   Future<List<ItemModel>?> fetchData() async {
     List<ItemModel> items = [];
     await Firebase.initializeApp();

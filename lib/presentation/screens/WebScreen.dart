@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/bloc/WebCubit.dart';
-import 'package:riciclo_zen/bloc/WebState.dart';
-import 'package:riciclo_zen/commons/Constants.dart';
-import 'package:riciclo_zen/commons/NavigationItem.dart';
-import 'package:riciclo_zen/widgets/CItyList.dart';
-import 'package:riciclo_zen/widgets/ItemsList.dart';
-import 'package:riciclo_zen/widgets/WebWidget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+
+import '../bloc/WebCubit.dart';
+import '../bloc/WebState.dart';
+import '../widgets/WebWidget.dart';
+
 
 class WebScreen extends StatelessWidget {
   static const String routeName = "/web";

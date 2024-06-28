@@ -4,17 +4,16 @@ import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/CityState.dart';
-import 'package:riciclo_zen/bloc/ItemsState.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:riciclo_zen/domain/models/CityModel.dart';
-import '../domain/models/ItemModel.dart';
 import 'dart:developer';
+
+import 'CityState.dart';
 
 class CityCubit extends Cubit<CityState> {
   List<CityModel> itemList = [];
 
-  CityCubit() : super(CityState(const []));
+  CityCubit() : super(const CityState([]));
 
   void fetchData() async {
     var f = await Firebase.initializeApp();

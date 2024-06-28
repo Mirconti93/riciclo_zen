@@ -7,9 +7,9 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/data/datasource/ItemsDataSourceImpl.dart';
+import 'package:riciclo_zen/data/datasource/RecycleDataSourceImpl.dart';
 import 'package:riciclo_zen/data/repository/ItemsRepositoryImpl.dart';
-import '../domain/models/ItemModel.dart';
+import '../../domain/models/ItemModel.dart';
 import 'ItemsState.dart';
 
 class ItemsCubit extends Cubit<ItemsState> {
@@ -18,7 +18,7 @@ class ItemsCubit extends Cubit<ItemsState> {
   ItemsCubit() : super(ItemsState(const []));
 
   void fetchData() async {
-    ItemsDataSourceImpl().fetchData().then(
+    RecycleDataSourceImpl().fetchData().then(
       (data) => {
         if (data != null) {
           emit(ItemsState(data))

@@ -1,18 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/InfoCubit.dart';
-import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/bloc/WebCubit.dart';
-import 'package:riciclo_zen/commons/Constants.dart';
-import 'package:riciclo_zen/widgets/CItyList.dart';
-import 'package:riciclo_zen/widgets/HomeScreen.dart';
-import 'package:riciclo_zen/widgets/WebScreen.dart';
-
-import 'bloc/CityCubit.dart';
+import 'package:riciclo_zen/injection.dart';
+import 'package:riciclo_zen/presentation/bloc/CityCubit.dart';
+import 'package:riciclo_zen/presentation/bloc/InfoCubit.dart';
+import 'package:riciclo_zen/presentation/bloc/ItemsCubit.dart';
+import 'package:riciclo_zen/presentation/bloc/WebCubit.dart';
+import 'package:riciclo_zen/presentation/screens/HomeScreen.dart';
+import 'package:riciclo_zen/presentation/screens/WebScreen.dart';
 
 void main() {
   Firebase.initializeApp();
+  configureDependencies();
   runApp(const MyApp());
 }
 

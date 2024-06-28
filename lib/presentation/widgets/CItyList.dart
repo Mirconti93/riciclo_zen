@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/CityCubit.dart';
-import 'package:riciclo_zen/bloc/CityState.dart';
-import 'package:riciclo_zen/widgets/GenericCard.dart';
-import 'package:riciclo_zen/widgets/WebScreen.dart';
 
+import '../bloc/CityCubit.dart';
+import '../bloc/CityState.dart';
+import '../screens/WebScreen.dart';
+import 'GenericCard.dart';
 import 'SearchWidet.dart';
+
 
 class CityList extends StatelessWidget {
   const CityList({super.key});

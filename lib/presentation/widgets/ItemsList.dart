@@ -1,10 +1,11 @@
 // Widget per visualizzare e aggiungere elementi alla lista
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/bloc/ItemsState.dart';
-import 'package:riciclo_zen/widgets/GenericCard.dart';
-import 'package:riciclo_zen/widgets/SearchWidet.dart';
+
+import '../bloc/ItemsCubit.dart';
+import '../bloc/ItemsState.dart';
+import 'GenericCard.dart';
+import 'SearchWidet.dart';
 
 class ItemsList extends StatelessWidget {
   const ItemsList({super.key});
