@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
-
+import '../../commons/DataResponse.dart';
 import '../../domain/models/ItemModel.dart';
+import '../models/CityModel.dart';
 
 abstract class RecycleDataSource {
 
-  Future<List<ItemModel>?> fetchData();
+  Future<DataResponse<List<ItemModel>>> fetchItems();
+  Future<DataResponse<List<CityModel>>> fetchCities();
 
 }

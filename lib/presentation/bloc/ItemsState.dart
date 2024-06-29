@@ -20,3 +20,8 @@ class ErrorState extends ItemsState {
   List<Object> get props => [message];
 }
 
+class LoadingState extends ItemsState {
+  LoadingState() : super([]);
+
+}
+

@@ -13,27 +13,34 @@ class ItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
-      return Column(
-        children: [
-          const Text("Cerca l'oggetto per sapere dove gettarlo:"),
-          SearchWidget(callback: (String value) {
-            context.read<ItemsCubit>().filterData(value);
-          }),
-          Expanded(
-              child: ListView.builder(
-                itemCount: state.items.length,
-                itemBuilder: (context, index) {
-                  return GenericCard(
-                    title: state.items[index].name,
-                    subtitle: state.items[index].material,
-                    comment: state.items[index].comment,
-                    showSubtitle: true,
-                  );
-                },
+      switch (state.runtimeType) {
+        case ErrorState:
+          return Text((state as ErrorState).message);
+        case LoadingState:
+          return const CircularProgressIndicator(color: Colors.white,);
+        default:
+          return Column(
+            children: [
+              const Text("Cerca l'oggetto per sapere dove gettarlo:"),
+              SearchWidget(callback: (String value) {
+                context.read<ItemsCubit>().getItems(value);
+              }),
+              Expanded(
+                  child: ListView.builder(
+                    itemCount: state.items.length,
+                    itemBuilder: (context, index) {
+                      return GenericCard(
+                        title: state.items[index].name,
+                        subtitle: state.items[index].material,
+                        comment: state.items[index].comment,
+                        showSubtitle: true,
+                      );
+                    },
+                  )
               )
-          )
-        ],
-      );
+            ],
+          );
+      }
     });
   }
 
