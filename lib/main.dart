@@ -11,8 +11,8 @@ import 'package:riciclo_zen/presentation/screens/WebScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   configureDependencies();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
     return
       MultiBlocProvider(
           providers: [
-            BlocProvider(create: (BuildContext context) => ItemsCubit()..getItems(null)),
-            BlocProvider(create: (BuildContext context) => CityCubit()..fetchData()),
+            BlocProvider(create: (BuildContext context) => ItemsCubit()..getItems()),
+            BlocProvider(create: (BuildContext context) => CityCubit()..getCities()),
             BlocProvider(create: (BuildContext context) => InfoCubit()..fetchData()),
             BlocProvider(create: (BuildContext context) => WebCubit())
           ],
