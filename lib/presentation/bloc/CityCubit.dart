@@ -1,39 +1,41 @@
-// Definizione del Cubit
-
-import 'dart:convert';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:get_it/get_it.dart';
 import 'package:riciclo_zen/domain/models/CityModel.dart';
-import 'dart:developer';
+import 'package:riciclo_zen/domain/repository/CitiesRepository.dart';
 
+import '../../commons/Constants.dart';
+import '../../commons/DataResponse.dart';
 import 'CityState.dart';
 
 class CityCubit extends Cubit<CityState> {
-  List<CityModel> itemList = [];
+  final GetIt locator = GetIt.instance;
+  List<CityModel> _citiesList = [];
 
   CityCubit() : super(const CityState([]));
 
-  void fetchData() async {
-    var f = await Firebase.initializeApp();
-    DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('City');
-    _databaseReference.onValue.listen((DatabaseEvent event) {
-      Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
-      log('db riciclo lenght: ${values.length}');
-      List<CityModel> cityList = [];
-      values.forEach((key, value) {
-        log('db value: $value');
-        cityList.add(CityModel(name: key, link: value));
-      });
-      itemList = cityList;
-      emit(CityState(cityList));
-    });
-
+  void getCities() async {
+    emit(LoadingState());
+    CitiesRepository _citiesRepository =  locator<CitiesRepository>();
+    _citiesRepository.fetchData().listen(
+        (data) {
+          CityState cityState = ErrorState(Constants.ERROR_DATA_FETCH);
+          if (data is DataResponse<List<CityModel>>) {
+            if (data.isSuccess()) {
+              _citiesList = data.data as List<CityModel>;
+              cityState = CityState(_citiesList);
+            } else {
+              if (data.error != null) {
+                cityState = ErrorState(data.error.toString());
+              }
+            }
+          }
+          emit(cityState);
+        }
+    );
   }
 
-  void filterData(String text) {
-    emit(CityState(itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
+  void filterList(String text) {
+    emit(CityState(_citiesList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
 
 }

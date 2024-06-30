@@ -6,7 +6,7 @@ import '../models/CityModel.dart';
 
 abstract class RecycleDataSource {
 
-  Future<DataResponse<List<ItemModel>>> fetchItems();
-  Future<DataResponse<List<CityModel>>> fetchCities();
+  Stream<DataResponse<List<ItemModel>>> fetchItems();
+  Stream<DataResponse<List<CityModel>>> fetchCities();
 
 }

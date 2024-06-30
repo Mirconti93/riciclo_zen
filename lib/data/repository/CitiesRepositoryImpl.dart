@@ -6,10 +6,11 @@ import '../../commons/DataResponse.dart';
 import '../../domain/datasource/RecycleDataSource.dart';
 
 class CitiesRepositoryImpl extends CitiesRepository {
+
   RecycleDataSource dataSource =  GetIt.instance<RecycleDataSource>();
 
   @override
-  Future<DataResponse<List<CityModel>>> fetchData() {
+  Stream<DataResponse<List<CityModel>>> fetchData() {
     return dataSource.fetchCities();
   }
 

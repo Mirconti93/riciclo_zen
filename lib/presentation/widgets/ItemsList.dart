@@ -1,6 +1,6 @@
-// Widget per visualizzare e aggiungere elementi alla lista
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:riciclo_zen/presentation/widgets/CustomLoading.dart';
 
 import '../bloc/ItemsCubit.dart';
 import '../bloc/ItemsState.dart';
@@ -17,13 +17,13 @@ class ItemsList extends StatelessWidget {
         case ErrorState:
           return Text((state as ErrorState).message);
         case LoadingState:
-          return const CircularProgressIndicator(color: Colors.white,);
+          return const CustomLoading();
         default:
           return Column(
             children: [
               const Text("Cerca l'oggetto per sapere dove gettarlo:"),
               SearchWidget(callback: (String value) {
-                context.read<ItemsCubit>().getItems(value);
+                context.read<ItemsCubit>().filterList(value);
               }),
               Expanded(
                   child: ListView.builder(

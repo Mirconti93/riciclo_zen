@@ -9,5 +9,16 @@ class CityState extends Equatable {
   List<Object> get props => [cityList];
 }
 
+class ErrorState extends CityState {
+  final String message;
 
+  ErrorState(this.message) : super([]);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class LoadingState extends CityState {
+  LoadingState() : super([]);
+}
 

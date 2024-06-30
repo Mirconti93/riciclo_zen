@@ -1,7 +1,5 @@
 // Definizione del Cubit
 
-import 'dart:convert';
-
 import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -10,39 +8,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:riciclo_zen/commons/Constants.dart';
 import 'package:riciclo_zen/commons/DataResponse.dart';
-import 'package:riciclo_zen/data/datasource/RecycleDataSourceImpl.dart';
 import 'package:riciclo_zen/data/repository/ItemsRepositoryImpl.dart';
 import 'package:riciclo_zen/domain/repository/ItemsRepository.dart';
 import 'package:riciclo_zen/presentation/widgets/ItemsList.dart';
+
 import '../../domain/models/ItemModel.dart';
 import 'ItemsState.dart';
 
 class ItemsCubit extends Cubit<ItemsState> {
   final GetIt locator = GetIt.instance;
 
+  List<ItemModel> _itemList = [];
+
   ItemsCubit() : super(ItemsState(const []));
 
-
-  void getItems(String? text) async {
+  void getItems() async {
     emit(LoadingState());
     ItemsRepository _itemsRepository =  locator<ItemsRepository>();
-    _itemsRepository.fetchData().then(
-        (data) => {
-        if (data != null && data is DataResponse<List<ItemModel>>) {
-          if (data.isSuccess()) {
-            if (text != null && !text.isEmpty) {
-              emit(ItemsState((data.data as List<ItemModel>).where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()))
+    _itemsRepository.fetchData().listen(
+        (data) {
+          log("On data success");
+          ItemsState itemsState = ErrorState(Constants.ERROR_DATA_FETCH);
+          if (data is DataResponse<List<ItemModel>>) {
+            if (data.isSuccess()) {
+              _itemList = data.data as List<ItemModel>;
+              itemsState = ItemsState(_itemList);
             } else {
-              emit(ItemsState(data.data as List<ItemModel>))
+              if (data.error != null) {
+                itemsState = ErrorState(data.error.toString());
+              }
             }
-          } else {
-            emit(ErrorState(Constants.ERROR_DATA_FETCH))
           }
-        }
+          emit(itemsState);
       }
-    ).catchError(() =>
-        emit(ErrorState(Constants.ERROR_DATA_FETCH))
     );
+  }
+
+  void filterList(String text) {
+    emit(ItemsState(_itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
 
 

@@ -11,51 +11,49 @@ import '../../domain/models/ItemModel.dart';
 class RecycleDataSourceImpl extends RecycleDataSource{
 
   @override
-  Future<DataResponse<List<ItemModel>>> fetchItems() async {
-    Map<dynamic, dynamic>? values = fetchFromFirebaseDatabase(Constants.ITEMS_TABLE);
-    if (values != null) {
-      if (values.isEmpty) {
-        log("DataError 1:");
-        return const DataError(Constants.EMPTY_LIST);
+  Stream<DataResponse<List<ItemModel>>> fetchItems()  {
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref(Constants.ITEMS_TABLE);
+    return databaseReference.onValue.map((databaseEvent) {
+      Map<dynamic, dynamic> values = databaseEvent.snapshot.value as Map<dynamic, dynamic>;
+      if (values != null) {
+        if (values.isEmpty) {
+          log("Empty list");
+          return const DataError(Constants.EMPTY_LIST);
+        } else {
+          List<ItemModel> items = [];
+          values.forEach((key, value) {
+            items.add(ItemModel.fromJson(key, value));
+          });
+          log("DataSuccess, items:" + items.length.toString());
+          return DataSuccess(items);
+        }
       } else {
-        List<ItemModel> items = [];
-        values.forEach((key, value) {
-          items.add(ItemModel.fromJson(key, value));
-        });
-        log("DataSuccess, items:" + items.length.toString());
-        return DataSuccess(items);
+        log("Null values");
+        return const DataError(Constants.ERROR_DATA_FETCH);
       }
-    } else {
-      log("DataError:");
-      return const DataError(Constants.ERROR_DATA_FETCH);
-    }
+    });
   }
 
   @override
-  Future<DataResponse<List<CityModel>>> fetchCities() async {
-    Map<dynamic, dynamic>? values = fetchFromFirebaseDatabase(Constants.CITY_TABLE);
-    if (values != null) {
-      if (values.isEmpty) {
-        return const DataError(Constants.EMPTY_LIST);
+  Stream<DataResponse<List<CityModel>>> fetchCities()  {
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref(Constants.CITY_TABLE);
+    return databaseReference.onValue.map((databaseEvent) {
+      Map<dynamic, dynamic> values = databaseEvent.snapshot.value as Map<dynamic, dynamic>;
+      if (values != null) {
+        if (values.isEmpty) {
+          return const DataError(Constants.EMPTY_LIST);
+        } else {
+          List<CityModel> items = [];
+          values.forEach((key, value) {
+            items.add(CityModel(name: key, link: value));
+          });
+          return DataSuccess(items);
+        }
       } else {
-        List<CityModel> items = [];
-        values.forEach((key, value) {
-          items.add(CityModel(name: key, link: value));
-        });
-        return DataSuccess(items);
+        return const DataError(Constants.ERROR_DATA_FETCH);
       }
-    } else {
-      return const DataError(Constants.ERROR_DATA_FETCH);
-    }
+    });
   }
 
-  Map<dynamic, dynamic>? fetchFromFirebaseDatabase(String ref) {
-    Map<dynamic, dynamic>? values;
-    DatabaseReference databaseReference = FirebaseDatabase.instance.ref(ref);
-    databaseReference.onValue.listen((DatabaseEvent event) {
-      values = event.snapshot.value as Map<dynamic, dynamic>;
-    });
-    return values;
-  }
 
 }

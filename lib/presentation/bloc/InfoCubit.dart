@@ -12,7 +12,6 @@ class InfoCubit extends Cubit<InfoState> {
   InfoCubit() : super(const InfoState([]));
 
   void fetchData() async {
-    var f = await Firebase.initializeApp();
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Info');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
