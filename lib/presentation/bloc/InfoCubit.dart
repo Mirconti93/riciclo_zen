@@ -11,7 +11,7 @@ class InfoCubit extends Cubit<InfoState> {
 
   InfoCubit() : super(const InfoState([]));
 
-  void fetchData() async {
+  void getItems() async {
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Info');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
@@ -22,6 +22,10 @@ class InfoCubit extends Cubit<InfoState> {
       emit(InfoState(infos));
     });
 
+  }
+
+  void filterList(String text) {
+    //emit(InfoState(_itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
 
 
