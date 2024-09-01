@@ -8,5 +8,6 @@ abstract class RecycleDataSource {
 
   Stream<DataResponse<List<ItemModel>>> fetchItems();
   Stream<DataResponse<List<CityModel>>> fetchCities();
+  Stream<DataResponse<List<CityModel>>> fetchInfos();
 
 }

@@ -10,4 +10,20 @@ class InfoState extends Equatable {
 }
 
 
+class ErrorState extends InfoState {
+  final String message;
+
+  ErrorState(this.message) : super([]);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class LoadingState extends InfoState {
+  LoadingState() : super([]);
+
+}
+
+
+
 
