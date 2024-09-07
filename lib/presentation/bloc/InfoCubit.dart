@@ -11,13 +11,13 @@ class InfoCubit extends Cubit<InfoState> {
 
   InfoCubit() : super(const InfoState([]));
 
-  void getItems() async {
+  void getInfos() async {
     DatabaseReference _databaseReference = FirebaseDatabase.instance.ref('Info');
     _databaseReference.onValue.listen((DatabaseEvent event) {
       Map<dynamic, dynamic> values = event.snapshot.value  as Map<dynamic, dynamic>;
       List<InfoModel> infos = [];
       values.forEach((key, value) {
-        infos.add(InfoModel(name: key, link: value));
+        infos.add(InfoModel(name: key, link: value, description: ''));
       });
       emit(InfoState(infos));
     });

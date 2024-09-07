@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (BuildContext context) => ItemsCubit()..getItems()),
             BlocProvider(create: (BuildContext context) => CityCubit()..getCities()),
-            BlocProvider(create: (BuildContext context) => InfoCubit()..fetchData()),
+            BlocProvider(create: (BuildContext context) => InfoCubit()..getInfos()),
             BlocProvider(create: (BuildContext context) => WebCubit())
           ],
           child: MaterialApp(

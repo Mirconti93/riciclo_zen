@@ -4,6 +4,7 @@ import 'package:riciclo_zen/commons/NavigationItem.dart';
 
 import '../widgets/CItyList.dart';
 import '../widgets/ItemsList.dart';
+import '../widgets/InfosList.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static List<NavigationItem> pages = <NavigationItem>[
     const NavigationItem(ItemsList(), "Materiali", Icon(Icons.home)),
-    const NavigationItem(CityList(), "Paesi", Icon(Icons.place))
+    const NavigationItem(CityList(), "Paesi", Icon(Icons.place)),
+    const NavigationItem(InfosList(), "Info", Icon(Icons.info))
   ];
 
   void _onItemTapped(int index) {

@@ -31,7 +31,7 @@ class InfosList extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GenericCard(
                         title: state.infos[index].name,
-                        subtitle: state.infos[index].link,
+                        subtitle: state.infos[index].description,
                         comment: "",
                         showSubtitle: true,
                       );
