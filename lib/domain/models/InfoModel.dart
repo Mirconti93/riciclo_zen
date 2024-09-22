@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 
 class InfoModel extends Equatable {
@@ -11,6 +13,7 @@ class InfoModel extends Equatable {
   List<Object?> get props => [name];
 
   factory InfoModel.fromJson(String nameFromKey, Map<dynamic, dynamic> json) {
+    log("Key:" + nameFromKey + "Json:" + json.toString() );
     return InfoModel(
         name: nameFromKey,
         description: json['description'],

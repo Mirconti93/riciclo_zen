@@ -63,15 +63,18 @@ class RecycleDataSourceImpl extends RecycleDataSource{
       Map<dynamic, dynamic> values = databaseEvent.snapshot.value as Map<dynamic, dynamic>;
       if (values != null) {
         if (values.isEmpty) {
+          log("INFOFETCH empty list" );
           return const DataError(Constants.EMPTY_LIST);
         } else {
           List<InfoModel> items = [];
+          log("INFOFETCH values:" + values.toString() );
           values.forEach((key, value) {
             items.add(InfoModel.fromJson(key, value));
           });
           return DataSuccess(items);
         }
       } else {
+        log("INFOFETCH error fetch" );
         return const DataError(Constants.ERROR_DATA_FETCH);
       }
     });
