@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riciclo_zen/commons/NavigationItem.dart';
 
+import '../../commons/Constants.dart';
 import '../widgets/CItyList.dart';
 import '../widgets/ItemsList.dart';
 import '../widgets/InfosList.dart';
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF2F3136),
+          backgroundColor: Constants.BackgroundColor,
           title: const Text("Riciclo Zen"),
         ),
         body: Padding(
@@ -51,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: getBottomBarItems(),
           currentIndex: _selectedIndex,
-          selectedItemColor: const Color(0xFF00E791),
+          selectedItemColor: Constants.LightGreenGray,
           onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
         )
     );
