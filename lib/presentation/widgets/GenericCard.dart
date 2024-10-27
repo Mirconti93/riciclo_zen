@@ -20,7 +20,7 @@ class GenericCard extends StatelessWidget {
     required this.showSubtitle,
     this.comment = "",
     this.titleColor = Colors.white70,
-    this.subtitleColor = Colors.white70,
+    this.subtitleColor = Colors.amber,
     this.commentColor = Colors.white70
   });
 
@@ -49,7 +49,7 @@ class GenericCard extends StatelessWidget {
               style: TextStyle(
                 color: commentColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 20),
+                fontSize: 14),
             )
           ]
         ),

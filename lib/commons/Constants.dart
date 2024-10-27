@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class Constants {
   static Color DarkGreenGray = const Color(0xFF152218);
-  static Color LightGreenGray = const Color(0xFF00E791);
+  static Color Amber = const Color(0xFFFFBF00);
   static Color BackgroundColor = const Color(0xFF2F3136);
   static Color SecondaryColor = const Color(0xFF292B2F);
   static Color TextGray = const Color(0xEEEEEEFF);

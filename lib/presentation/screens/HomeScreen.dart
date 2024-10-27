@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: getBottomBarItems(),
           currentIndex: _selectedIndex,
-          selectedItemColor: Constants.LightGreenGray,
           onTap: (int selectedIndex) { _onItemTapped(selectedIndex);},
         )
     );
