@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GlobalThemData {
+class GlobalThemeData {
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
   static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
@@ -19,25 +19,21 @@ class GlobalThemData {
     onSecondary: Color(0xFF322942),
     error: Colors.redAccent,
     onError: Colors.white,
-    background: Color(0xFFE6EBEB),
-    onBackground: Colors.white,
     surface: Color(0xFFFAFBFB),
     onSurface: Color(0xFF241E30),
     brightness: Brightness.light,
   );
 
   static const ColorScheme darkColorScheme = ColorScheme(
-    primary: Colors.amber,
-    secondary: Color(0xFFFFE642),
-    background: const Color(0xFF202225),
-    surface: Color(0xFF1F1929),
-    onBackground: Color(0x0DFFFFFF),
+    primary: Color(0xFFFFBF00),
+    onPrimary: Colors.black,
+    secondary: Color(0xFF2F3136),
+    onSecondary: Color(0xFFFFBF00),
     error: Colors.redAccent,
     onError: Colors.white,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    onSurface: Colors.white,
-    brightness: Brightness.dark,
+    surface: Color(0xFF292B2F),
+    onSurface: Color(0xFF241E30),
+    brightness: Brightness.light,
   );
 
 }

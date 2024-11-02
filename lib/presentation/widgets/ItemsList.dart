@@ -29,11 +29,16 @@ class ItemsList extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: state.items.length,
                     itemBuilder: (context, index) {
-                      return GenericCard(
-                        title: state.items[index].name,
-                        subtitle: state.items[index].material,
-                        comment: state.items[index].comment,
-                        showSubtitle: true,
+                      return GestureDetector (
+                        onTap: () => {
+                          _showPopup(state.items[index].name, state.items[index].material, state.items[index].comment, context)
+                        },
+                        child: GenericCard(
+                          title: state.items[index].name,
+                          subtitle: state.items[index].material,
+                          comment: state.items[index].comment,
+                          showSubtitle: true,
+                        )
                       );
                     },
                   )
@@ -44,4 +49,41 @@ class ItemsList extends StatelessWidget {
     });
   }
 
+  void _showPopup(String title, String material, String description, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22)
+          ),
+          content: Column (
+            children: [
+              Text(material,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20)
+              ),
+              Text(description,
+                  style: const TextStyle(
+                      fontSize: 20)
+              )
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Chiudi il popup
+              },
+              child: const Text('Chiudi'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+

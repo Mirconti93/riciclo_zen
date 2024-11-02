@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
               title: 'Riciclo Zen',
               themeMode: ThemeMode.dark,
-              theme: GlobalThemData.lightThemeData,
-              darkTheme: GlobalThemData.darkThemeData,
+              theme: GlobalThemeData.lightThemeData,
+              darkTheme: GlobalThemeData.darkThemeData,
               home: const HomeScreen(),
             routes: {
               WebScreen.routeName: (context) => const WebScreen(),
