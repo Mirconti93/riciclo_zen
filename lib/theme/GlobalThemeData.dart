@@ -26,13 +26,13 @@ class GlobalThemeData {
 
   static const ColorScheme darkColorScheme = ColorScheme(
     primary: Color(0xFFFFBF00),
-    onPrimary: Colors.black,
-    secondary: Color(0xFF2F3136),
+    onPrimary: Colors.white,
+    secondary: Color(0xFF292B2),
     onSecondary: Color(0xFFFFBF00),
     error: Colors.redAccent,
     onError: Colors.white,
     surface: Color(0xFF292B2F),
-    onSurface: Color(0xFF241E30),
+    onSurface: Colors.white,
     brightness: Brightness.light,
   );
 

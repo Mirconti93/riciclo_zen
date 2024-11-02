@@ -24,7 +24,7 @@ class GenericCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(color: Theme.of(context).cardColor,
+    return Card(color: Theme.of(context).colorScheme.secondary,
       child: Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
