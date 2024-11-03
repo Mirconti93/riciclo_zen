@@ -1,14 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riciclo_zen/injection.dart';
-import 'package:riciclo_zen/presentation/bloc/CityCubit.dart';
-import 'package:riciclo_zen/presentation/bloc/InfoCubit.dart';
-import 'package:riciclo_zen/presentation/bloc/ItemsCubit.dart';
-import 'package:riciclo_zen/presentation/bloc/WebCubit.dart';
-import 'package:riciclo_zen/presentation/screens/HomeScreen.dart';
-import 'package:riciclo_zen/presentation/screens/WebScreen.dart';
-import 'package:riciclo_zen/theme/GlobalThemeData.dart';
+import 'package:riciclo_zen/commons/di/injection.dart';
+import 'package:riciclo_zen/city/presentation/bloc/CityCubit.dart';
+import 'package:riciclo_zen/infos/presentation/bloc/InfoCubit.dart';
+import 'package:riciclo_zen/items/presentation/bloc/ItemsCubit.dart';
+
+import 'commons/presentation/screens/HomeScreen.dart';
+import 'commons/theme/GlobalThemeData.dart';
+import 'openweb/presentation/WebScreen.dart';
+import 'openweb/presentation/bloc/WebCubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
