@@ -19,6 +19,8 @@ class GlobalThemeData {
     onSecondary: Color(0xFF322942),
     error: Colors.redAccent,
     onError: Colors.white,
+    background: Color(0xFFE6EBEB),
+    onBackground: Colors.white,
     surface: Color(0xFFFAFBFB),
     onSurface: Color(0xFF241E30),
     brightness: Brightness.light,
@@ -26,6 +28,19 @@ class GlobalThemeData {
 
   static const ColorScheme darkColorScheme = ColorScheme(
     primary: Color(0xFFFFBF00),
+    secondary: Color(0xEEEEEEFF),
+    secondaryContainer:Color(0xFF424242),
+    tertiary: Color(0xFF424242),
+    background: Color(0xFF212121),
+    surface: Color(0xFF212121),
+    onBackground: Colors.white,
+    error: Colors.redAccent,
+    onError: Colors.white,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.white,
+    brightness: Brightness.dark,
+    /*primary: Color(0xFFFFBF00),
     onPrimary: Colors.white,
     secondary: Color(0xFF292B2),
     onSecondary: Color(0xFFFFBF00),
@@ -33,7 +48,7 @@ class GlobalThemeData {
     onError: Colors.white,
     surface: Color(0xFF292B2F),
     onSurface: Colors.white,
-    brightness: Brightness.light,
+    brightness: Brightness.light,*/
   );
 
 }

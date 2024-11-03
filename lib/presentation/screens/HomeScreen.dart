@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Constants.BackgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           title: const Text("Riciclo Zen"),
         ),
         body: Padding(

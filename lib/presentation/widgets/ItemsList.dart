@@ -38,6 +38,7 @@ class ItemsList extends StatelessWidget {
                           subtitle: state.items[index].material,
                           comment: state.items[index].comment,
                           showSubtitle: true,
+                          titleColor: Theme.of(context).colorScheme.secondary,
                         )
                       );
                     },
@@ -54,10 +55,12 @@ class ItemsList extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           title: Text(title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22)
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22)
           ),
           content: Column (
             children: [

@@ -18,13 +18,13 @@ class GenericCard extends StatelessWidget {
     required this.showSubtitle,
     this.comment = "",
     this.titleColor,
-    this.subtitleColor = Colors.amber,
-    this.commentColor = Colors.white70
+    this.subtitleColor,
+    this.commentColor
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(color: Theme.of(context).colorScheme.secondary,
+    return Card(color: Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,12 +33,12 @@ class GenericCard extends StatelessWidget {
                 style: TextStyle(
                     color: titleColor != null ? titleColor : Theme.of(context).colorScheme.onPrimary,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16)),
+                    fontSize: 20)),
             Visibility(
                 visible: showSubtitle,
                 child: Text(subtitle, textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: subtitleColor != null ? subtitleColor : Theme.of(context).colorScheme.onPrimary,
+                      color: subtitleColor != null ? subtitleColor : Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
