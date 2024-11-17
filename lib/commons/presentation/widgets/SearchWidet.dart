@@ -22,16 +22,20 @@ class _SearchWidgetState extends State<SearchWidget> {
 
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: SizedBox(
-        height: 50,
+        height: 70,
         child: TextField(
-          decoration: const InputDecoration(
+          style: const TextStyle(
+            fontSize: 16,
+          ),
+          decoration: InputDecoration(
             //labelText: 'Search',
-            filled: true, // <- this is required.
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            filled: true,
+            fillColor: Theme.of(context).colorScheme.secondaryContainer,
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
               borderSide: BorderSide.none,
             ),
-            prefixIcon: Icon(Icons.search),
+            prefixIcon: const Icon(Icons.search, size: 20),
           ),
           onChanged: (value) {widget.callback(value);}
         )

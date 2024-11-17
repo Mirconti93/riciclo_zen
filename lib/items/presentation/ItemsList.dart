@@ -64,6 +64,8 @@ class ItemsList extends ScreenWidget {
                   fontSize: 22)
           ),
           content: Column (
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(material,
                   style: TextStyle(
