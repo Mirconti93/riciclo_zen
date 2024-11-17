@@ -42,7 +42,6 @@ class InfosList extends ScreenWidget {
                         },
                         child: GenericCard(
                           title: state.infos[index].name,
-                          subtitle: "",
                           comment: state.infos[index].description,
                           commentColor: Theme.of(context).colorScheme.primary,
                           showSubtitle: true,
