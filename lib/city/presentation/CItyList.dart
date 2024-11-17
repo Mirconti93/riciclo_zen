@@ -44,6 +44,7 @@ class CityList extends ScreenWidget {
                         child: GenericCard(
                           title: state.cityList[index].name,
                           comment: state.cityList[index].link,
+                          commentColor: Theme.of(context).colorScheme.primary,
                           showSubtitle: false,
                         ),
                       );

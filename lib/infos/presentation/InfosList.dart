@@ -36,14 +36,15 @@ class InfosList extends ScreenWidget {
                           Navigator.pushNamed(
                               context, WebScreen.routeName,
                               arguments: WebArguments(
-                                  state.cityList[index].link
+                                  state.infos[index].link
                               )
                           )
                         },
                         child: GenericCard(
                           title: state.infos[index].name,
-                          subtitle: state.infos[index].description,
-                          comment: "",
+                          subtitle: "",
+                          comment: state.infos[index].description,
+                          commentColor: Theme.of(context).colorScheme.primary,
                           showSubtitle: true,
                         )
                       );
