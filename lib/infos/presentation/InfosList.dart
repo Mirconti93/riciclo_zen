@@ -44,7 +44,7 @@ class InfosList extends ScreenWidget {
                           title: state.infos[index].name,
                           comment: state.infos[index].description,
                           commentColor: Theme.of(context).colorScheme.primary,
-                          showSubtitle: true,
+                          showSubtitle: false,
                         )
                       );
                     },
