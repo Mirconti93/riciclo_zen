@@ -6,7 +6,8 @@ import 'package:riciclo_zen/city/presentation/bloc/CityCubit.dart';
 import 'package:riciclo_zen/infos/presentation/bloc/InfoCubit.dart';
 import 'package:riciclo_zen/items/presentation/bloc/ItemsCubit.dart';
 
-import 'commons/presentation/screens/HomeScreen.dart';
+import 'commons/navigation/Router.dart';
+import 'commons/presentation/screens/MainScreen.dart';
 import 'commons/theme/GlobalThemeData.dart';
 import 'openweb/presentation/WebScreen.dart';
 import 'openweb/presentation/bloc/WebCubit.dart';
@@ -32,15 +33,12 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (BuildContext context) => InfoCubit()..getInfos()),
             BlocProvider(create: (BuildContext context) => WebCubit())
           ],
-          child: MaterialApp(
+          child: MaterialApp.router (
               title: 'Riciclo Zen',
               themeMode: ThemeMode.dark,
               theme: GlobalThemeData.lightThemeData,
               darkTheme: GlobalThemeData.darkThemeData,
-              home: const HomeScreen(),
-            routes: {
-              WebScreen.routeName: (context) => const WebScreen(),
-            },
+              routerConfig: goRouter,
           )
       );
   }

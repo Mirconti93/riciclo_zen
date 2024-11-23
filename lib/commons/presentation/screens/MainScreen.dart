@@ -1,18 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riciclo_zen/commons/navigation/NavigationItem.dart';
 import '../../../city/presentation/CItyList.dart';
 import '../../../items/presentation/ItemsList.dart';
 import '../../../infos/presentation/InfosList.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+
+  final StatefulNavigationShell navigationShell;
+
+  const MainScreen({
+    Key? key,
+    required this.navigationShell,
+  }) : super(key: key ?? const ValueKey('ScaffoldWithNestedNavigation'));
+
+
+  void _goBranch(int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
+    );
+  }
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        title: const Text("Riciclo Zen"),
+      ),
+      body: navigationShell,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: navigationShell.currentIndex,
+        destinations: const [
+          NavigationDestination(label: "Materiali", icon: Icon(Icons.home)),
+          NavigationDestination(label: "Città", icon: Icon(Icons.place)),
+          NavigationDestination(label: "Info", icon: Icon(Icons.info)),
+        ],
+        onDestinationSelected: _goBranch,
+      ),
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+/*class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   static List<NavigationItem> pages = <NavigationItem>[
@@ -40,10 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-          title: const Text("Riciclo Zen"),
-        ),
+
         body: Padding(
           padding: const EdgeInsets.all(8),
           child: pages[_selectedIndex].screenWidget
@@ -55,4 +84,4 @@ class _HomeScreenState extends State<HomeScreen> {
         )
     );
   }
-}
+}*/

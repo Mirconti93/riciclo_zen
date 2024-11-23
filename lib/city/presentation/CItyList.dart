@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riciclo_zen/commons/navigation/Router.dart';
 
 import '../../commons/presentation/widgets/ScreenWidget.dart';
 import '../../openweb/presentation/WebScreen.dart';
@@ -34,12 +36,7 @@ class CityList extends ScreenWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () => {
-                          Navigator.pushNamed(
-                              context, WebScreen.routeName,
-                              arguments: WebArguments(
-                                  state.cityList[index].link
-                              )
-                          )
+                          context.go("$ROUTE_CITY$ROUTE_WEB/${state.cityList[index].link}")
                         },
                         child: GenericCard(
                           title: state.cityList[index].name,

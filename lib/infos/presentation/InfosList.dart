@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:riciclo_zen/commons/navigation/Router.dart';
 import '../../commons/presentation/widgets/CustomLoading.dart';
 import '../../commons/presentation/widgets/ScreenWidget.dart';
-import '../../openweb/presentation/WebScreen.dart';
+
 import '../../commons/presentation/widgets/GenericCard.dart';
 import '../../commons/presentation/widgets/SearchWidet.dart';
 import 'bloc/InfoCubit.dart';
@@ -33,12 +35,7 @@ class InfosList extends ScreenWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () => {
-                          Navigator.pushNamed(
-                              context, WebScreen.routeName,
-                              arguments: WebArguments(
-                                  state.infos[index].link
-                              )
-                          )
+                          context.go("$ROUTE_INFOS$ROUTE_WEB/${state.cityList[index].link}")
                         },
                         child: GenericCard(
                           title: state.infos[index].name,

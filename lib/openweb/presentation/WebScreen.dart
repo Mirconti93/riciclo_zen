@@ -7,33 +7,16 @@ import 'bloc/WebCubit.dart';
 import 'bloc/WebState.dart';
 
 class WebScreen extends StatelessWidget {
-  static const String routeName = "/web";
+  final String url;
 
-  const WebScreen({Key? key});
+  const WebScreen({Key? key, required this.url});
 
   @override
   Widget build(BuildContext context) {
 
-    final args = ModalRoute.of(context)!.settings.arguments as WebArguments;
-
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme
-              .of(context)
-              .colorScheme
-              .inversePrimary,
-          title: const Text("Riciclo Zen"),
-        ),
-        body: BlocBuilder<WebCubit, WebState>(builder: (context, state) {
-          return WebWidget(url: args.url);
+    return BlocBuilder<WebCubit, WebState>(builder: (context, state) {
+          return WebWidget(url: url);
         }
-      )
     );
   }
-}
-
-class WebArguments {
-  final String url;
-
-  WebArguments(this.url);
 }
