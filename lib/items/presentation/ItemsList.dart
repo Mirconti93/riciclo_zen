@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:riciclo_zen/commons/Constants.dart';
 
 import '../../commons/presentation/widgets/ScreenWidget.dart';
 import '../../commons/presentation/widgets/CustomLoading.dart';
@@ -8,18 +9,14 @@ import '../../commons/presentation/widgets/SearchWidet.dart';
 import 'bloc/ItemsCubit.dart';
 import 'bloc/ItemsState.dart';
 
-class ItemsList extends ScreenWidget {
+class ItemsList extends StatelessWidget {
   const ItemsList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
       switch (state.runtimeType) {
-        case ErrorState:
-          return Text((state as ErrorState).message);
-        case LoadingState:
-          return const CustomLoading();
-        default:
+        case const (ListState):
           return Column(
             children: [
               const Text("Cerca l'oggetto per sapere dove gettarlo:"),
@@ -28,7 +25,7 @@ class ItemsList extends ScreenWidget {
               }),
               Expanded(
                   child: ListView.builder(
-                    itemCount: state.items.length,
+                    itemCount: (state as ListState).items.length,
                     itemBuilder: (context, index) {
                       return GestureDetector (
                         onTap: () => {
@@ -47,6 +44,11 @@ class ItemsList extends ScreenWidget {
               )
             ],
           );
+        case const (LoadingState):
+          return const CustomLoading();
+        default:
+          String message = (state is ErrorState) ? (state as ErrorState).message : Constants.GENERIC_ERROR;
+          return Text(message);
       }
     });
   }
@@ -92,9 +94,5 @@ class ItemsList extends ScreenWidget {
     );
   }
 
-  @override
-  resetState(BuildContext context) {
-    context.read<ItemsCubit>().resetState();
-  }
 }
 

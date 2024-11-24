@@ -14,5 +14,7 @@ class Constants {
   static const String INFO_TABLE = 'Info';
   static const String ERROR_DATA_FETCH = 'Errore nel recupero dei dati';
   static const String EMPTY_LIST = 'Errore nel recupero dei dati';
+  static const String GENERIC_ERROR = 'Si è verificato un errore';
+
 
 }

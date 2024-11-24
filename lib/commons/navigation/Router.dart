@@ -13,7 +13,7 @@ final _shellNavigatoCityKey = GlobalKey<NavigatorState>(debugLabel: 'shellCity')
 final _shellNavigatoInfoKey = GlobalKey<NavigatorState>(debugLabel: 'shellInfo');
 final _shellNavigatoWebKey = GlobalKey<NavigatorState>(debugLabel: 'shellWeb');
 
-const ROUTE_ITEMS = "/items";
+const ROUTE_ITEMS = "/";
 const ROUTE_CITY = "/city";
 const ROUTE_INFOS = "/infos";
 const ROUTE_WEB = "/web";
@@ -53,10 +53,9 @@ final goRouter = GoRouter(
               ),
               routes: [
                 GoRoute(
-                  path: "$ROUTE_WEB/:url",
+                  path: ROUTE_WEB,
                     builder: (BuildContext context, GoRouterState state) {
-                      final url = state.pathParameters['url'] ?? "";
-                      return WebScreen(url: url);
+                      return const WebScreen();
                     },
                   )
               ]
@@ -74,10 +73,9 @@ final goRouter = GoRouter(
               ),
               routes:[
                 GoRoute(
-                  path: "$ROUTE_WEB/:url",
+                  path: ROUTE_WEB,
                   builder: (BuildContext context, GoRouterState state) {
-                    final url = state.pathParameters['url'] ?? "";
-                    return WebScreen(url: url);
+                    return const WebScreen();
                   },
                 ),
               ]

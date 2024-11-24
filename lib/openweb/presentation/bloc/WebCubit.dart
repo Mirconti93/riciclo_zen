@@ -12,11 +12,10 @@ import 'WebState.dart';
 
 class WebCubit extends Cubit<WebState> {
 
-  WebCubit() : super(const WebState(""));
+  WebCubit() : super(LoadingState());
 
   void setLink(String url) {
-    emit(WebState(url));
+    emit(BrowserState(url));
   }
-
 
 }

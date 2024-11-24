@@ -16,19 +16,18 @@ class ItemsCubit extends Cubit<ItemsState> {
 
   List<ItemModel> _itemList = [];
 
-  ItemsCubit() : super(ItemsState(const []));
+  ItemsCubit() : super(ListState(const []));
 
   void getItems() async {
     emit(LoadingState());
-    ItemsRepository _itemsRepository =  locator<ItemsRepository>();
-    _itemsRepository.fetchData().listen(
+    locator<ItemsRepository>().fetchData().listen(
         (data) {
           log("On data success");
           ItemsState itemsState = ErrorState(Constants.ERROR_DATA_FETCH);
           if (data is DataResponse<List<ItemModel>>) {
             if (data.isSuccess()) {
               _itemList = data.data as List<ItemModel>;
-              itemsState = ItemsState(_itemList);
+              itemsState = ListState(_itemList);
             } else {
               if (data.error != null) {
                 itemsState = ErrorState(data.error.toString());
@@ -41,12 +40,7 @@ class ItemsCubit extends Cubit<ItemsState> {
   }
 
   void filterList(String text) {
-    emit(ItemsState(_itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
+    emit(ListState(_itemList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
-
-  void resetState() {
-    if (_itemList != null && !_itemList.isEmpty) emit(ItemsState(_itemList));
-  }
-
 
 }

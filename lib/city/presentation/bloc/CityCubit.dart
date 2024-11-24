@@ -11,22 +11,19 @@ class CityCubit extends Cubit<CityState> {
   final GetIt locator = GetIt.instance;
   List<CityModel> _citiesList = [];
 
-  CityCubit() : super(const CityState([]));
+  CityCubit() : super(ListState(const []));
 
   void getCities() async {
     emit(LoadingState());
-    CityRepository _cityRepository =  locator<CityRepository>();
-    _cityRepository.fetchData().listen(
+    locator<CityRepository>().fetchData().listen(
         (data) {
           CityState cityState = ErrorState(Constants.ERROR_DATA_FETCH);
-          if (data is DataResponse<List<CityModel>>) {
-            if (data.isSuccess()) {
-              _citiesList = data.data as List<CityModel>;
-              cityState = CityState(_citiesList);
-            } else {
-              if (data.error != null) {
-                cityState = ErrorState(data.error.toString());
-              }
+          if (data.isSuccess()) {
+            _citiesList = data.data as List<CityModel>;
+            cityState = ListState(_citiesList);
+          } else {
+            if (data.error != null) {
+              cityState = ErrorState(data.error.toString());
             }
           }
           emit(cityState);
@@ -35,11 +32,7 @@ class CityCubit extends Cubit<CityState> {
   }
 
   void filterList(String text) {
-    emit(CityState(_citiesList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
-  }
-
-  void resetState() {
-    if (_citiesList != null && !_citiesList.isEmpty) emit(CityState(_citiesList));
+    emit(ListState(_citiesList.where((element) => element.name.toLowerCase().contains(text.toLowerCase())).toList()));
   }
 
 }
