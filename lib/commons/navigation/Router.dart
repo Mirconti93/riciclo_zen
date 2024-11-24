@@ -18,6 +18,8 @@ const ROUTE_CITY = "/city";
 const ROUTE_INFOS = "/infos";
 const ROUTE_WEB = "/web";
 
+enum NavTabs { ITEMS, CITY, INFOS}
+
 // the one and only GoRouter instance
 final goRouter = GoRouter(
   initialLocation: ROUTE_ITEMS,

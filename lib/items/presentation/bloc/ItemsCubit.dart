@@ -24,14 +24,13 @@ class ItemsCubit extends Cubit<ItemsState> {
         (data) {
           log("On data success");
           ItemsState itemsState = ErrorState(Constants.ERROR_DATA_FETCH);
-          if (data is DataResponse<List<ItemModel>>) {
-            if (data.isSuccess()) {
-              _itemList = data.data as List<ItemModel>;
-              itemsState = ListState(_itemList);
-            } else {
-              if (data.error != null) {
-                itemsState = ErrorState(data.error.toString());
-              }
+          if (data.isSuccess()) {
+            _itemList = data.data as List<ItemModel>;
+            _itemList.sort((a, b) => a.name.compareTo(b.name));
+            itemsState = ListState(_itemList);
+          } else {
+            if (data.error != null) {
+              itemsState = ErrorState(data.error.toString());
             }
           }
           emit(itemsState);

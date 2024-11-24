@@ -11,11 +11,17 @@ import 'dart:developer';
 import 'WebState.dart';
 
 class WebCubit extends Cubit<WebState> {
+  String _url = "";
 
   WebCubit() : super(LoadingState());
 
   void setLink(String url) {
-    emit(BrowserState(url));
+    _url = url;
+    emit(BrowserState(_url));
+  }
+
+  String getLink() {
+    return _url;
   }
 
 }

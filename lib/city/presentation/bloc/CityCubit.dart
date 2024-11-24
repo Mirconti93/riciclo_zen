@@ -20,6 +20,7 @@ class CityCubit extends Cubit<CityState> {
           CityState cityState = ErrorState(Constants.ERROR_DATA_FETCH);
           if (data.isSuccess()) {
             _citiesList = data.data as List<CityModel>;
+            _citiesList.sort((a, b) => a.name.compareTo(b.name));
             cityState = ListState(_citiesList);
           } else {
             if (data.error != null) {

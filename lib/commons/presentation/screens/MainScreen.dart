@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riciclo_zen/commons/navigation/NavigationItem.dart';
-import '../../../city/presentation/CItyList.dart';
-import '../../../items/presentation/ItemsList.dart';
-import '../../../infos/presentation/InfosList.dart';
 
 class MainScreen extends StatelessWidget {
 
@@ -19,7 +15,7 @@ class MainScreen extends StatelessWidget {
   void _goBranch(int index) {
     navigationShell.goBranch(
       index,
-      initialLocation: index == navigationShell.currentIndex,
+      initialLocation: true,
     );
   }
 

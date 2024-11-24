@@ -17,7 +17,7 @@ class WebScreen extends StatelessWidget {
 
     return BlocBuilder<WebCubit, WebState>(builder: (context, state) {
       switch (state.runtimeType) {
-        case BrowserState():
+        case BrowserState:
           return WebWidget(url: (context.read<WebCubit>().state as BrowserState).url);
         case const (LoadingState):
           return const CustomLoading();

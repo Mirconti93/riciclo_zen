@@ -9,6 +9,7 @@ import '../../commons/presentation/widgets/ScreenWidget.dart';
 
 import '../../commons/presentation/widgets/GenericCard.dart';
 import '../../commons/presentation/widgets/SearchWidet.dart';
+import '../../commons/presentation/widgets/TopText.dart';
 import '../../openweb/presentation/bloc/WebCubit.dart';
 import 'bloc/InfoCubit.dart';
 import 'bloc/InfoState.dart';
@@ -23,39 +24,41 @@ class InfosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InfoCubit, InfoState>(builder: (context, state) {
-      switch (state.runtimeType) {
-        case const (ListState):
-          return Column(
-            children: [
-              const Text("Info utili:"),
-              SearchWidget(callback: (String value) {
-                context.read<InfoCubit>().filterList(value);
-              }),
-              Expanded(
-                  child: ListView.builder(
-                    itemCount: (state as ListState).infos.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => _onTap(context, state.infos[index].link),
-                        child: GenericCard(
-                          title: state.infos[index].name,
-                          comment: state.infos[index].description,
-                          commentColor: Theme.of(context).colorScheme.primary,
-                          showSubtitle: false,
-                        )
-                      );
-                    },
-                  )
-              )
-            ],
-          );
-        case const (LoadingState):
-          return const CustomLoading();
-        default:
-          String message = (state is ErrorState) ? (state).message : Constants.GENERIC_ERROR;
-          return Text(message);
+    return Padding(padding: const EdgeInsets.all(8),
+      child:  BlocBuilder<InfoCubit, InfoState>(builder: (context, state) {
+        switch (state.runtimeType) {
+          case const (ListState):
+            return Column(
+              children: [
+                const TopText(text: "Info utili:"),
+                SearchWidget(callback: (String value) {
+                  context.read<InfoCubit>().filterList(value);
+                }),
+                Expanded(
+                    child: ListView.builder(
+                      itemCount: (state as ListState).infos.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => _onTap(context, state.infos[index].link),
+                          child: GenericCard(
+                            title: state.infos[index].name,
+                            comment: state.infos[index].description,
+                            commentColor: Theme.of(context).colorScheme.primary,
+                            showSubtitle: false,
+                          )
+                        );
+                      },
+                    )
+                )
+              ],
+            );
+          case const (LoadingState):
+            return const CustomLoading();
+          default:
+            String message = (state is ErrorState) ? (state).message : Constants.GENERIC_ERROR;
+            return Text(message);
+        }
       }
-    });
+    ));
   }
 }

@@ -6,6 +6,7 @@ import '../../commons/presentation/widgets/ScreenWidget.dart';
 import '../../commons/presentation/widgets/CustomLoading.dart';
 import '../../commons/presentation/widgets/GenericCard.dart';
 import '../../commons/presentation/widgets/SearchWidet.dart';
+import '../../commons/presentation/widgets/TopText.dart';
 import 'bloc/ItemsCubit.dart';
 import 'bloc/ItemsState.dart';
 
@@ -14,43 +15,44 @@ class ItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
-      switch (state.runtimeType) {
-        case const (ListState):
-          return Column(
-            children: [
-              const Text("Cerca l'oggetto per sapere dove gettarlo:"),
-              SearchWidget(callback: (String value) {
-                context.read<ItemsCubit>().filterList(value);
-              }),
-              Expanded(
-                  child: ListView.builder(
-                    itemCount: (state as ListState).items.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector (
-                        onTap: () => {
-                          _showPopup(state.items[index].name, state.items[index].material, state.items[index].comment, context)
-                        },
-                        child: GenericCard(
-                          title: state.items[index].name,
-                          subtitle: state.items[index].material,
-                          comment: state.items[index].comment,
-                          showSubtitle: true,
-                          titleColor: Theme.of(context).colorScheme.secondary,
-                        )
-                      );
-                    },
-                  )
-              )
-            ],
-          );
-        case const (LoadingState):
-          return const CustomLoading();
-        default:
-          String message = (state is ErrorState) ? (state as ErrorState).message : Constants.GENERIC_ERROR;
-          return Text(message);
-      }
-    });
+    return Padding(padding: const EdgeInsets.all(8),
+      child: BlocBuilder<ItemsCubit, ItemsState>(builder: (context, state) {
+        switch (state.runtimeType) {
+          case const (ListState):
+            return Column(
+              children: [
+                const TopText(text: "Cerca l'oggetto per sapere dove gettarlo:"),
+                SearchWidget(callback: (String value) {
+                  context.read<ItemsCubit>().filterList(value);
+                }),
+                Expanded(
+                    child: ListView.builder(
+                      itemCount: (state as ListState).items.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector (
+                          onTap: () => {
+                            _showPopup(state.items[index].name, state.items[index].material, state.items[index].comment, context)
+                          },
+                          child: GenericCard(
+                            title: state.items[index].name,
+                            subtitle: state.items[index].material,
+                            comment: state.items[index].comment,
+                            showSubtitle: true,
+                            titleColor: Theme.of(context).colorScheme.secondary,
+                          )
+                        );
+                      },
+                    )
+                )
+              ],
+            );
+          case const (LoadingState):
+            return const CustomLoading();
+          default:
+            String message = (state is ErrorState) ? (state as ErrorState).message : Constants.GENERIC_ERROR;
+            return Text(message);
+        }
+      }));
   }
 
   void _showPopup(String title, String material, String description, BuildContext context) {
